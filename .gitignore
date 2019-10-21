@@ -1,4 +1,6 @@
-_pycache_
+__pycache__/
 .vscode
 tryouts/
 versions/
+tests/
+*.log
