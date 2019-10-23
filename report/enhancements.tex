@@ -1,0 +1,18 @@
+\section{Enhancements}
+
+To improve the performance of the alpha-beta search algorithm, the following enhancements were used.
+
+\subsection{Iterative Deepening}
+Iterative Deepening is used to keep track of the expansion of the game tree. The game tree is re-searched iteratively until a maximum depth is reached. This approach allows for usable intermediate results at shallow depth. These can be used for coming up with sufficiently good moves despite time pressure.
+
+\subsection{Transposition Tables}
+
+A Transposition table is used to store already processed variations of the game tree with their corresponding evaluation and search depth. Additionally, a flag indication the whether there was a cut-off at search time is stored. Whenever a new search is started, the transposition will already contain much of the work to be done, thus saving a lot of computation time, in particular much of the overhead introduced by the iterative depth search. The search-depth and flag on past cutoffs stored alongside the position in the transposition table give information about the quality of the value. Values found at a deeper level than the current level which have also not seen any cutoffs can be used as they are. Values seen at a deeper level which have seen cutoffs can be re-used to set the alpha or beta values for the current search iteration.
+
+\subsection{Move Ordering}
+If available, the values stored int he transposition table are also used for move ordering. The moves are ordered in a descending fashion where values are treated equally regardless of their flag. Positions which are not yet in the transposition table are put to the end of the list.
+
+\subsection{Time Management}
+Time management follows the rule that each move can only take up a certain percentage of the time available. This will lead to a gradual decrease in time spent per move as the game progresses.
+
+As a safeguard against loosing on time, a \textit{panic mode} is implemented once only a certain amount of time is left. In this mode, a fixed search depth of 2 is applied.

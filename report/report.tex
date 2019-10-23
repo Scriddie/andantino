@@ -1,23 +1,32 @@
-\documentclass{report}
+\documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{lipsum} % Used for tableofcontents
 \usepackage[parfill]{parskip} % No indent for a new line
 \usepackage[capitalise]{cleveref} % cref
 \usepackage{mwe} % used for minipages to show two figures side by side
 \usepackage{subcaption}
-\usepackage{enumitem}% http://ctan.org/pkg/enumitem
-
+\usepackage{enumitem}
 \usepackage{cite}
+\usepackage{graphicx}
+\usepackage[margin=1.5in]{geometry}
+\graphicspath{{./figures/}}
 
-\title{ANDANTIONO \\ Project Report \\ \large Game implementation and AI}
+
+\title{ANDANTINO \\ Project Report \\ \large Game Implementation and AI}
 \author{Alexander Reisach (i6197692)}
-\date{}
+\date{\today}
 
 
 \begin{document}
     \include{titlepage}
     \tableofcontents
-    \include{body}
-    \bibliographystyle{IEEEtran}
-    \bibliography{bibliography}
+    \include{andantino}
+    \include{game_implementation}
+    \include{search_techniques}
+    \include{enhancements}
+    \include{ideas_for_improvement}
+    \include{conclusion}
+    \include{manual}
+    % \bibliographystyle{apalike}
+    % \bibliography{bibliography}
 \end{document}

@@ -1,0 +1,25 @@
+\contentsline {section}{\numberline {1}Andantino}{3}% 
+\contentsline {subsection}{\numberline {1.1}Game Rules}{3}% 
+\contentsline {subsection}{\numberline {1.2}Game Characteristics}{3}% 
+\contentsline {section}{\numberline {2}Game Implementation}{4}% 
+\contentsline {subsection}{\numberline {2.1}Software Architecture}{4}% 
+\contentsline {subsection}{\numberline {2.2}Data Structures}{5}% 
+\contentsline {subsection}{\numberline {2.3}Game Actions}{5}% 
+\contentsline {subsubsection}{\numberline {2.3.1}Legal Moves}{5}% 
+\contentsline {subsubsection}{\numberline {2.3.2}Win Conditions}{5}% 
+\contentsline {subsection}{\numberline {2.4}External Libraries}{5}% 
+\contentsline {section}{\numberline {3}Search Techniques}{6}% 
+\contentsline {subsection}{\numberline {3.1}Alpha-Beta-Search}{6}% 
+\contentsline {subsection}{\numberline {3.2}Evaluation Function}{6}% 
+\contentsline {subsection}{\numberline {3.3}Debugging}{7}% 
+\contentsline {section}{\numberline {4}Enhancements}{8}% 
+\contentsline {subsection}{\numberline {4.1}Iterative Deepening}{8}% 
+\contentsline {subsection}{\numberline {4.2}Transposition Tables}{8}% 
+\contentsline {subsection}{\numberline {4.3}Move Ordering}{8}% 
+\contentsline {subsection}{\numberline {4.4}Time Management}{8}% 
+\contentsline {section}{\numberline {5}Ideas for Improvements}{9}% 
+\contentsline {subsection}{\numberline {5.1}Heuristics}{9}% 
+\contentsline {subsection}{\numberline {5.2}Evaluation Funcion}{9}% 
+\contentsline {subsection}{\numberline {5.3}Thinking Ahead}{9}% 
+\contentsline {section}{\numberline {6}Conclusion}{10}% 
+\contentsline {section}{\numberline {A}Instruction Manual}{11}% 

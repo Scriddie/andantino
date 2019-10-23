@@ -1,0 +1,38 @@
+\section{Search Techniques}
+
+\subsection{Alpha-Beta-Search}
+%  as introduced by \cite{knuth1975analysis}
+The game AI used for this game is implemented using an alpha-beta format, more ppecifically, the Negamax algorithm. Alpha-Beta pruning is used to reduce the number of nodes explored while maintaining the quality of the evaluation. The AI's move of choice is reset to the move in question, whenever there is an update of the evaluation at the very top of the search tree.
+
+\subsection{Evaluation Function}
+The evaluation of a position relies on differences in continuous line lengths as heuristic for the quality of a position. The formula  assumes increasing marginal utility of continuous lines:
+
+\begin{center}
+    \begin{math}
+        L_\mathrm{self}^2 - L_\mathrm{opponent}^2
+    \end{math}
+\end{center}
+
+where $L_\mathrm{self}$ denotes the player's longest continuous line and $L_\mathrm{opponent}$ denotes the opponents longest continuous line. For example, in \ref{fig:evaluation}, the black player will have an evaluation of $4^2 - 3^2 = 5$
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{four_in_row.png}
+    \caption{Evaluation of continuous lines}
+    \label{fig:evaluation}
+\end{figure}
+
+Additionally, states with a definitive win are assigned a value greater than any other that can possibly be reached, while losing states are assigned anqually large negaive value.
+
+
+\subsection{Debugging}
+To check the funcionality of the search techniques mentioned above, a debugging log as can be seen in \ref{fig:debugging} was used to keep track of the game tree. This proved to be a useful tool for ensuring correct evaluation values and prunings.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.7]{log3.png}
+    \caption{Debugging log}
+    \label{fig:debugging}
+\end{figure}  
+
+% \subsection{Performance}

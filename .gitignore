@@ -3,4 +3,5 @@ __pycache__/
 tryouts/
 versions/
 tests/
+/report/figures/
 *.log

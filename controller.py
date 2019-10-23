@@ -19,7 +19,7 @@ reload(utils)
 # TODO: restart from game stack after crash?
 # TODO: take some measuremets (win rate, achievable depth, time per depth)
 #       with some different enhancements (negamax, pruning, tt, move ordering, heuristics)
-TIME_LIMIT = 600  # in sec, should be 600
+TIME_LIMIT = 120  # in sec, should be 600
 ITERATIONS_1 = 8
 ITERATIONS_2 = 8
 GAME_STACK = []

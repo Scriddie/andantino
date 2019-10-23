@@ -1,0 +1,13 @@
+Project report:
+
+    In this document, give a description of the program's use and working. Include a description of 
+        the search techniques, 
+        heuristics, 
+        evaluation function 
+        etc.,
+    used in your program. 
+    
+    Preferably include 
+        the results of the testing of the different techniques investigated. 
+        
+    This document should have a size of approximately 10 pages, using "standard formatting".

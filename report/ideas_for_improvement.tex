@@ -1,0 +1,11 @@
+\section{Ideas for Improvements}
+Upon ending the project there remain several domains for improvement. Apart from introducing new approaches such as opening books or move ordering heuristics, the following improvements based on existing components were determined to be the most obvious and promising.
+
+\subsection{Heuristics}
+The way in which the model of the game identifies legal moves and identifies structures such as surrounds and continuous lines on the board could be greatly improved by heuristics. For example, keeping track of legal moves would remove the need for checking repeatedly. The presence or absence of a surround win condition can be proven more efficiently by marking all tiles that are part of a single tile's floodfill search for a on unoccupied route to the border in one go. These and more opportunities have been postponed in favour of an expansion of alpha-beta search techniques but will likely speed up the search speed considerably.
+
+\subsection{Evaluation Funcion}
+The evaluation function currently in use works under several limiting assumptions. It does not yet reward a move towards a surround win and does not consider whether proximity of a tile to the border or to enemy tiles limits the tile's potential.
+
+\subsection{Thinking Ahead}
+The time taken by the opponent to make a move can be used to expand the transposition table. This would require a careful judgement of how much time an expansion will take, but might to greater search depths at almost no cost.

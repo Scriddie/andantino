@@ -2,10 +2,11 @@ PWD c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report
 INPUT C:\Users\alexa\AppData\Local\MiKTeX\2.9\miktex\data\le\pdftex\pdflatex.fmt
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\report.tex
 OUTPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\report.log
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\report.cls
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\report.cls
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\size10.clo
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\size10.clo
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\article.cls
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\article.cls
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\size11.clo
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\size11.clo
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\lipsum\lipsum.sty
@@ -14,6 +15,9 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\expl3.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\expl3.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\expl3-code.tex
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3kernel\expl3-code.tex
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\nul:.tex
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\nul:.tex
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\nul:.tex
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\nul:.tex
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr10.tfm
@@ -83,12 +87,34 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\enumitem\enumitem.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\enumitem\enumitem.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\cite\cite.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\cite\cite.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\report.aux
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\report.aux
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\titlepage.aux
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\titlepage.aux
-INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\body.aux
-INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\body.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\andantino.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\andantino.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\game_implementation.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\game_implementation.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\search_techniques.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\search_techniques.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\enhancements.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\enhancements.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\ideas_for_improvement.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\ideas_for_improvement.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\conclusion.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\conclusion.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\manual.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\manual.aux
 OUTPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\report.aux
 INPUT C:\Program Files\MiKTeX 2.9\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Program Files\MiKTeX 2.9\tex\context\base\mkii\supp-pdf.mkii
@@ -100,8 +126,6 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\kvdefinekeys.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\kvdefinekeys.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty
 OUTPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\titlepage.aux
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\titlepage.tex
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\titlepage.tex
@@ -115,26 +139,90 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmi6.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmsy10.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmsy8.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmsy6.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmti10.tfm
 OUTPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\report.pdf
 INPUT C:\Users\alexa\AppData\Local\MiKTeX\2.9\pdftex\config\pdftex.map
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr17.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\report.toc
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\report.toc
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmi10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmsy10.tfm
 OUTPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\report.toc
-OUTPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\body.aux
-INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\body.tex
-INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\body.tex
+OUTPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\andantino.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\andantino.tex
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\andantino.tex
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
+OUTPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\game_implementation.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\game_implementation.tex
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\game_implementation.tex
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmti10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd
+INPUT figures\MVC.png
+INPUT .\figures\MVC.png
+INPUT .\figures\MVC.png
+INPUT .\figures\MVC.png
+INPUT .\figures\MVC.png
+OUTPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\search_techniques.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\search_techniques.tex
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\search_techniques.tex
+INPUT figures\four_in_row.png
+INPUT .\figures\four_in_row.png
+INPUT .\figures\four_in_row.png
+INPUT .\figures\four_in_row.png
+INPUT .\figures\four_in_row.png
+INPUT figures\log3.png
+INPUT .\figures\log3.png
+INPUT .\figures\log3.png
+INPUT .\figures\log3.png
+INPUT .\figures\log3.png
+OUTPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\enhancements.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\enhancements.tex
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\enhancements.tex
+OUTPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\ideas_for_improvement.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\ideas_for_improvement.tex
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\ideas_for_improvement.tex
+OUTPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\conclusion.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\conclusion.tex
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\conclusion.tex
+OUTPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\manual.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\manual.tex
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\manual.tex
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\report.aux
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\titlepage.aux
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\titlepage.aux
-INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\body.aux
-INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\body.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\andantino.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\andantino.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\game_implementation.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\game_implementation.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\search_techniques.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\search_techniques.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\enhancements.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\enhancements.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\ideas_for_improvement.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\ideas_for_improvement.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\conclusion.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\conclusion.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\manual.aux
+INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\manual.aux
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx12.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx12.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr12.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr12.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr17.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr17.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr8.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr8.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmti10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmti10.pfb
