@@ -87,6 +87,8 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\enumitem\enumitem.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\enumitem\enumitem.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\cite\cite.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\cite\cite.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty
@@ -169,16 +171,22 @@ INPUT .\figures\MVC.png
 OUTPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\search_techniques.aux
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\search_techniques.tex
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\search_techniques.tex
-INPUT figures\four_in_row.png
-INPUT .\figures\four_in_row.png
-INPUT .\figures\four_in_row.png
-INPUT .\figures\four_in_row.png
-INPUT .\figures\four_in_row.png
 INPUT figures\log3.png
 INPUT .\figures\log3.png
 INPUT .\figures\log3.png
 INPUT .\figures\log3.png
 INPUT .\figures\log3.png
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmtt10.tfm
+INPUT figures\three_in_row.png
+INPUT .\figures\three_in_row.png
+INPUT .\figures\three_in_row.png
+INPUT .\figures\three_in_row.png
+INPUT .\figures\three_in_row.png
+INPUT figures\evaluation.png
+INPUT .\figures\evaluation.png
+INPUT .\figures\evaluation.png
+INPUT .\figures\evaluation.png
+INPUT .\figures\evaluation.png
 OUTPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\enhancements.aux
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\enhancements.tex
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\enhancements.tex
@@ -191,6 +199,11 @@ INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\conclusi
 OUTPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\manual.aux
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\manual.tex
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\manual.tex
+INPUT figures\andantino_full_screen.png
+INPUT .\figures\andantino_full_screen.png
+INPUT .\figures\andantino_full_screen.png
+INPUT .\figures\andantino_full_screen.png
+INPUT .\figures\andantino_full_screen.png
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\report.aux
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\titlepage.aux
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\titlepage.aux
@@ -212,8 +225,14 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx12.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmbx12.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmex10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmex10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi6.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi6.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi8.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi8.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr12.pfb
@@ -226,3 +245,5 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmti10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmtt10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmtt10.pfb

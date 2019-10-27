@@ -1,3 +1,4 @@
+% \let\clearpage\relax
 \section{Enhancements}
 
 To improve the performance of the alpha-beta search algorithm, the following enhancements were used.
@@ -16,3 +17,6 @@ If available, the values stored int he transposition table are also used for mov
 Time management follows the rule that each move can only take up a certain percentage of the time available. This will lead to a gradual decrease in time spent per move as the game progresses.
 
 As a safeguard against loosing on time, a \textit{panic mode} is implemented once only a certain amount of time is left. In this mode, a fixed search depth of 2 is applied.
+
+\subsection{Computational speedups}
+For runtime optimization, the static compiler \textit{Cython} is used. A comparison of the search log has yielded that after compilation, higher search depths are maintained longer into the game, resulting in a higher quality of game-play.

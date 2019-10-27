@@ -42,10 +42,10 @@ Whether a move is legal or not is checked based on the turn and neighbours of th
 
 \subsubsection{Win Conditions}
 
-\textbf{Five in a Row}
+\textbf{Five in a Row}\\
 The criterion for five in a row is implemented recursively. Each cell will recursively query neighbours in a straight line to count how many continuous cells of the same color there are.
 
-\textbf{Surround}
+\textbf{Surround}\\
 The surround win criterion is implemented in a depth-first floodfill fashion. Each cell recursively queries its neighbours to check whether there is a way to get to the border of the game board. If there is no such path without encountering a cell of enemy color, a surround is detected.
 
 
