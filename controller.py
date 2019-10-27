@@ -3,6 +3,8 @@ import pygame.freetype
 import game_logic
 import ui
 import ai
+# import ai1
+# import ai2
 from copy import deepcopy
 import utils
 import logging
@@ -12,23 +14,23 @@ import time
 reload(game_logic)
 reload(ui)
 reload(ai)
+# reload(ai1)
+# reload(ai2)
 reload(utils)
 
-
-# TODO: simply let each AI player keep a time log for itself (remove from game logic)
-# TODO: restart from game stack after crash?
 # TODO: take some measuremets (win rate, achievable depth, time per depth)
 #       with some different enhancements (negamax, pruning, tt, move ordering, heuristics)
-TIME_LIMIT = 120  # in sec, should be 600
-ITERATIONS_1 = 8
-ITERATIONS_2 = 8
+TIME_LIMIT = 600  # in sec, should be 600
+ITERATIONS_1 = 15
+ITERATIONS_2 = 15
 GAME_STACK = []
 
 game_logic = game_logic.GameLogic(TIME_LIMIT)
 game = game_logic.create_game()
 view = ui.View(game_logic, game)
-p1 = ai.AI(game_logic, ITERATIONS_1, player_number=0, logger=utils.create_logger())  # black
-p2 = ai.AI(game_logic, ITERATIONS_2, player_number=1, logger=utils.create_logger())  # white
+p1 = ai.AI(game_logic, ITERATIONS_1, player_number=0, logger=utils.create_logger(), initial_time=game_logic.initial_time)  # black
+p2 = None
+# p2 = ai.AI(game_logic, ITERATIONS_2, player_number=1, logger=utils.create_logger(), initial_time=game_logic.initial_time)  # white
 start_time = time.time()
 
 game_over = False
@@ -38,11 +40,13 @@ pygame.display.set_caption("Andantino")
 pygame.freetype.init()
 GAME_FONT = pygame.freetype.SysFont("Ubuntu Mono", 24)
 POS_FONT = pygame.freetype.SysFont("Ubuntu Mono", 9)
-display_text = view.get_text()        
+display_text = view.get_text()
+game_loop_counter = 0  
 
 # TODO: tell AI to stop making moves once the game is won!
 # TODO: make sure we are able to play the white AI
 while not game_over:
+    game_loop_counter = 0
     screen.fill((50, 50, 50))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -57,8 +61,9 @@ while not game_over:
 
             if view.detect_revert_action(mouse_pos):
                 view.game = GAME_STACK[-2]
-                ai.game = GAME_STACK[-2]
+                p1.game = GAME_STACK[-2]
                 game = GAME_STACK[-2]
+                GAME_STACK = GAME_STACK[0:-2]
 
             # Human player places a stone
             if cell != None:
@@ -69,6 +74,7 @@ while not game_over:
                 # BEWARE: the timekeeping for the non-AI player is off (bc of threading, I think)
                 view.update_text_on_move(legal_move)
                 start_time = time.time()
+                game_loop_counter = 1
                 
     # do AI action
     def ai_action(player):
@@ -81,8 +87,10 @@ while not game_over:
             view.update_text_on_move(legal_move)
             start_time = time.time()
     # if game["winner"] == None:
-    ai_action(p1)  # black
-    # ai_action(p2)  # white
+    if game_loop_counter == 0:
+        ai_action(p1)  # black
+        if p2 != None:
+            ai_action(p2)  # white
             
     display_text = view.get_text()
 
@@ -115,8 +123,18 @@ while not game_over:
     
     pygame.display.flip()
 
+    # if game["winner"] != None:
+    #     game_over = True
+
 pygame.quit()
 
 utils.remove_logger(p1.logger)
+if p2 != None:
+    utils.remove_logger(p2.logger)
 logging.shutdown()
+
+# if game["winner"] != None:
+#     black_points = 1 if game["winner"] == 0 else 0
+#     white_points = 1 if game["winner"] == 1 else 0
+#     utils.compile_stats(black_points, white_points)
 

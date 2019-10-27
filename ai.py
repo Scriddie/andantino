@@ -1,5 +1,3 @@
-# inspiration (aka pseudocode) taken from https://en.wikipedia.org/wiki/Negamax
-
 from copy import deepcopy
 from numpy import inf
 import hashlib
@@ -14,7 +12,7 @@ class AI:
     Calculate moves for a given game
     """
     # TODO: make all the various improvements optional to be able to test them easily
-    def __init__(self, game_logic, iterations, player_number, logger):
+    def __init__(self, game_logic, iterations, player_number, logger, initial_time):
         self.game_logic = game_logic
         self.game_plan = []  # best sequence, updated as a side effect of evaluation
         self.logger = logger
@@ -22,26 +20,38 @@ class AI:
         self.iterations = iterations
         self.next_move = None
         self.evaluation = None
-        self.move_time = 0
         self.t_table = {}
         self.best_move = (9, 9)
+        self.initial_time = initial_time  # total time for game
+        self.move_start_time = time.time()
 
     def find_next_move(self, game, time_left):
-        """find best next move and update transposition table in the process"""
+        """
+        Find best next move and update transposition table in the process.
+        Adhere to time constraints by clipping search depths accordingly.
+        """
         turn = game["turn"]
         self.logger.info(f"\n\nTURN {turn} \n")
+        self.move_start_time = time.time()
         for i in range(1, self.iterations+1):
             self.logger.info(f"Iteration: {i}")
             self.max_depth = i
-            start_time = time.time()
             self.evaluation = self.negamax(game, self.max_depth, alpha=-inf, beta=inf, player_sign=1)
-            self.move_time = time.time() - start_time
-            self.logger.info(f"Move time: {self.move_time}\n")
-            if (time_left < 10) and (i > 1):  # panic mode
+            move_time = time.time() - self.move_start_time
+            self.logger.info(f"Move time: {move_time}\n")
+
+            # Panic mode to avoid losing on time
+            if (time_left < 10) and (i > 1):
                 self.logger.info("-> PANIC CUTOFF\n")
                 break
-            if self.move_time > time_left/100:  # rapid mode
-                self.logger.info("-> BLITZ CUTOFF\n")
+
+            # Blitz mode: use a constant fraction of time left
+            if time_left < self.initial_time/10:
+                if time.time() - self.move_start_time > time_left/10:
+                    self.logger.info("-> BLITZ CUTOFF\n")
+                    break
+
+            if (time.time() - self.move_start_time) > self.initial_time/85:
                 break
             
         for key, value in self.t_table.items():
@@ -52,33 +62,49 @@ class AI:
         self.logger.info(f"BEST MOVE: {self.best_move}")
         return self.best_move
 
-    def evaluate(self, game):
+    def evaluate(self, game, depth):
         """evaluation of a game, always from the root player's perspective"""
         # TODO: maybe reward play in the center of the board?
         winner = game["winner"]
         if winner != None:
             if winner == self.player_number:
-                return 9999
+                return 9999999 + depth  # early win -> high depth value (counts down)
             else:
-                return -9999
+                return -9999999 - depth
 
-        my_longest = 1
-        opponent_longest = 1
+        my_connections = 1
+        my_cells = 0
+        enemy_connections = 1
+        enemy_cells = 0
+        # my_longest = 1
+        # opponent_longest = 1
         # reward continuous lines
         for row in game["grid"]:
             for cell in row:
                 if cell["owner"] != None:
-                    candidate = max(self.game_logic.count_cont_rows(game, cell["row"], cell["col"]))
-                    if (candidate > my_longest) and (cell["owner"] == self.player_number):
-                        my_longest = candidate
-                    elif (candidate > opponent_longest) and (cell["owner"] != self.player_number):
-                        opponent_longest = candidate
-        return my_longest**2 - opponent_longest**2
+                    # idea: count all win directions (sum, not max)
+                    # candidate = max(self.game_logic.count_cont_rows(game, cell["row"], cell["col"]))
+                    if cell["owner"] == self.player_number:
+                        my_cells += 1
+                        my_connections += sum(self.game_logic.count_cont_rows(game, cell["row"], cell["col"]))
+                        # if (candidate > my_longest): my_longest = candidate
+                    else:
+                        enemy_cells += 1
+                        enemy_connections += sum(self.game_logic.count_cont_rows(game, cell["row"], cell["col"]))
+                        # if (candidate > opponent_longest): opponent_longest = candidate
+        # # idea: if opponent goes for long lines, play the area game, and vice versa
+        eval1 = my_connections/my_cells - enemy_connections/enemy_cells
+        # eval2 = my_longest**2 - opponent_longest**2
+        # if (eval1 > 0) and (eval2 > 0):  # cautious in winning position
+        #     return min(eval1, eval2)
+        # if (eval1 < 0) and (eval2 < 0):  # optimistic in losing position
+        #     return max(eval1, eval2)
+        # else: return eval1 + eval2
+        # # return eval1 + eval2
+        return eval1
 
     def order_successors(self, successors):
         """order successors by evaluations from previous iterations"""
-        # TODO: check if this is actually an improvement
-        # am I looking at moves from the right perspective at all??
         ordered = successors
         ideal_order = []
         successor_state_hashes = [self.game_logic.hash_game(game) for (game, row, col) in successors]
@@ -103,6 +129,7 @@ class AI:
         position_hash = self.game_logic.hash_game(game)
 
         self.logger.info(f"{indent}Depth: {self.max_depth - depth} -> Hash: {position_hash}")
+        # Try retrieving values from transposition table
         try:
             tt_entry = self.t_table[position_hash]
         except KeyError:
@@ -120,8 +147,9 @@ class AI:
             if alpha >= beta:
                 return tt_entry["value"]
 
-        if self.game_logic.is_win_condition(game) or depth == 0:
-            value = player_sign * self.evaluate(game)
+        # Check for win condition or leaf node
+        if (self.game_logic.is_win_condition(game) or (depth == 0)):
+            value = player_sign * self.evaluate(game, depth)
             self.logger.info(f"{indent}Evaluation: {value}")
             return value
 
@@ -131,13 +159,14 @@ class AI:
         successors = self.order_successors(successors)
 
         value = -inf
-
+        # Traverse game tree in depth first manner
         for child, i, j in successors:
             self.logger.info(f"{indent}-> {i, j}")
             new_value = -self.negamax(child, depth-1, -beta, -alpha, -player_sign)
             if new_value > value:
                 self.logger.info(f"{indent}New candidate value at depth {self.max_depth-depth}: {new_value}\n")
-                if self.max_depth == depth:  # save best moves on highest level
+                # save best moves on direct successor level
+                if self.max_depth == depth:
                     self.best_move = (i, j)
                 value = new_value
             alpha = max(alpha, value)
@@ -145,6 +174,7 @@ class AI:
                 self.logger.info(f"{indent} Pruning")
                 break
 
+        # Save newly found value in transposition table
         new_tt_entry = {"value": value}
         if value <= alphaOrig:
             new_tt_entry["flag"] = "a_cuttoff"

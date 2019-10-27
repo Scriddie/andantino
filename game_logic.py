@@ -11,6 +11,7 @@ class GameLogic:
         self.LETTER_COORDINATES = ["A", "B", "C", "D", "E", "F", "G", "H",
          "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"]
         # TODO: transfer time keeping to controller
+        self.initial_time = time_limit
         self.player_0_time = time_limit
         self.player_1_time = time_limit
 
@@ -195,6 +196,18 @@ class GameLogic:
         win_directions[2] = cont_rows[2] + cont_rows[5] - 1
         return win_directions
 
+    def is_row_win(self, game):
+        """find row wins in given game"""
+        grid = game["grid"]
+        for row in grid:
+            for cell in row:
+                if cell["owner"] != None:
+                    win_directions = self.count_cont_rows(game, cell["row"], cell["col"])
+                    if max(win_directions) >= 5:
+                        return(True)
+        return False
+
+    
     def is_enclosed(self, game, row, col, owner):
         # TODO: not sure if this works
         cell = self.get(game, row, col)
@@ -216,16 +229,6 @@ class GameLogic:
                             nb["row"], nb["col"], owner)
                 return enclosed
 
-    def is_row_win(self, game):
-        """find row wins in given game"""
-        grid = game["grid"]
-        for row in grid:
-            for cell in row:
-                if cell["owner"] != None:
-                    win_directions = self.count_cont_rows(game, cell["row"], cell["col"])
-                    if max(win_directions) >= 5:
-                        return(True)
-        return False
 
     def uncheck(self, game):
         """uncheck all cells in given game"""

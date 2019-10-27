@@ -4,6 +4,9 @@ from math import pi, cos, sin, sqrt
 from copy import deepcopy
 
 class View:
+    """This class provides most of the information needed for the graphical
+    representation of the game. It detects user input and triggers game actions
+    accordingly."""
     def __init__(self, game_logic, game, vertex_count=6, radius=20):
         self.vertex_count = vertex_count
         self.radius = radius
@@ -15,6 +18,7 @@ class View:
         self.text = self.update_text()
 
     def update_text(self):
+        """Text information about whose turn it is"""
         # TODO: the text pieces should be provided by the game logic class to make them work for console as well!
         if self.game_logic.get_winner(self.game) != None:
             # player who put the last stone wins
@@ -23,6 +27,7 @@ class View:
             return f"{'White' if self.game_logic.get_player(self.game) == 1 else 'Black'} to move"
 
     def update_text_on_move(self, legal_move):
+        """Text information in case of illegal moves"""
         if legal_move:            
             self.text = self.update_text()
         else:
@@ -45,6 +50,7 @@ class View:
         ])
 
     def find_cell_positions(self, game):
+        """Determine cell positions for initial drawing of the board"""
         grid = game["grid"]
         position_grid = []
         for i in grid:
@@ -55,22 +61,24 @@ class View:
                 y = 100
                 side_length = 10
                 x = x + row * 2*self.radius - col * self.radius
-                y = y + col * 2*self.radius
+                y = y + col * 1.75*self.radius
                 if row >= side_length:
                     x = x - (row-side_length+1) * self.radius
-                    y = y + (row-side_length+1) * 2*self.radius
+                    y = y + (row-side_length+1) * 1.75*self.radius
                 position = (x, y)
                 new_row.append(position)
             position_grid.append(new_row)
         return position_grid
 
     def get_player_buttons(self):
+        """Draw buttons for choosing a player"""
         all_buttons = []
         all_buttons.append(((0, 0, 0), [(900, 200), (800, 200), (800, 300), (900, 300)]))
         all_buttons.append(((255, 255, 255),       [(1000, 200), (900, 200), (900, 300), (1000, 300)]))
         return all_buttons
 
     def detect_player(self, mouse_pos):
+        """Trigger player change on button click"""
         button_pos_lists = [i[1] for i in self.get_player_buttons()]
         for i, pos_list in enumerate(button_pos_lists):
             if ((mouse_pos[0] < pos_list[0][0]) and 
@@ -82,6 +90,7 @@ class View:
         return None
 
     def detect_cell(self, mouse_pos):
+        """Detect the cell (tile) a player has clicked on"""
         for i, row in enumerate(self.cell_positions):
             for j, cell in enumerate(row):
                 x, y = self.cell_positions[i][j]
@@ -91,6 +100,7 @@ class View:
         return None
 
     def find_cell_text_pos(self, cell_positions):
+        """Determine positions for alphanumeric cell coordinates"""
         text_pos = []
         for row in cell_positions:
             new_row = []
@@ -113,7 +123,6 @@ class View:
         return all_coordinates
 
     def draw_grid(self):
-        # TODO: get rid of gaps between cells (ugly)
         all_cells = []
         for i, row in enumerate(self.cell_positions):
             for j, position in enumerate(row):

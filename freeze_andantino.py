@@ -1,4 +1,6 @@
 # https://pythonprogramming.net/converting-pygame-executable-cx_freeze/
+# cmd argument: build
+
 import cx_Freeze
 
 executables = [cx_Freeze.Executable("controller.py")]
