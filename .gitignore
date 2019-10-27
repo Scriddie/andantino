@@ -3,5 +3,6 @@ __pycache__/
 tryouts/
 versions/
 tests/
-/report/figures/
+report/figures/
+submission_versions/
 *.log
