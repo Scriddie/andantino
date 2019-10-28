@@ -1,22 +1,45 @@
-% \let\clearpage\relax
 \section{Enhancements}
-
-To improve the performance of the alpha-beta search algorithm, the following enhancements were used.
 
 \subsection{Iterative Deepening}
 Iterative Deepening is used to keep track of the expansion of the game tree. The game tree is re-searched iteratively until a maximum depth is reached. This approach allows for usable intermediate results at shallow depth. These can be used for coming up with sufficiently good moves despite time pressure.
 
 \subsection{Transposition Tables}
 
-A Transposition table is used to store already processed variations of the game tree with their corresponding evaluation and search depth. Additionally, a flag indication the whether there was a cut-off at search time is stored. Whenever a new search is started, the transposition will already contain much of the work to be done, thus saving a lot of computation time, in particular much of the overhead introduced by the iterative depth search. The search-depth and flag on past cutoffs stored alongside the position in the transposition table give information about the quality of the value. Values found at a deeper level than the current level which have also not seen any cutoffs can be used as they are. Values seen at a deeper level which have seen cutoffs can be re-used to set the alpha or beta values for the current search iteration.
+A Transposition table is used to store already processed variations of the game tree with their corresponding evaluation and search depth. Additionally, a flag indicating cut-offs at search time is stored. Whenever a new search is started, the transposition will already contain much of the work to be done, thus saving a lot of computation time, in particular much of the overhead introduced by the iterative depth search. The search-depth and flag on past cutoffs stored alongside the position in the transposition table give information about the quality of the value. Values found at a deeper level than the current level which have also not seen any cutoffs can be used as they are. Values seen at a deeper level which have seen cutoffs can be re-used to set the alpha or beta values for the current search iteration.
 
 \subsection{Move Ordering}
 If available, the values stored int he transposition table are also used for move ordering. The moves are ordered in a descending fashion where values are treated equally regardless of their flag. Positions which are not yet in the transposition table are put to the end of the list.
 
 \subsection{Time Management}
-Time management follows the rule that each move can only take up a certain percentage of the time available. This will lead to a gradual decrease in time spent per move as the game progresses.
-
-As a safeguard against loosing on time, a \textit{panic mode} is implemented once only a certain amount of time is left. In this mode, a fixed search depth of 2 is applied.
+Time management follows three separately defined strategies. For the first 80\% if the time, a fixed time per move (based on the average length of games in self-play) is assigned. For the remaining 20\%, each move can only take up a certain percentage of the time left. This leads to a gradual decrease in time spent per move as the game progresses. As a safeguard against loosing on time, a \textit{panic mode} is implemented once only a certain amount of time is left. In this mode, a fixed search depth of 2 is applied.
 
 \subsection{Computational speedups}
 For runtime optimization, the static compiler \textit{Cython} is used. A comparison of the search log has yielded that after compilation, higher search depths are maintained longer into the game, resulting in a higher quality of game-play.
+
+\subsection{Performance Evaluation}
+The following table compares nodes visited at each depth for a typical mid-game position:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.7]{no_tt_vs_tt_opening_position0.png}
+    \caption{Game position used for performance evaluation}
+    \label{fig:performance_evaluation}
+\end{figure}  
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ccclllll}
+    \cline{1-3}
+    \multicolumn{1}{|c|}{Iteration} & \multicolumn{1}{|c|}{Nodes visited} & \multicolumn{1}{|c|}{Nodes visited with transposition table}\\ \cline{1-3}
+    \multicolumn{1}{|c|}{1} & \multicolumn{1}{|c|}{8} & \multicolumn{1}{|c|}{0}\\ \cline{1-3}
+    \multicolumn{1}{|c|}{2} & \multicolumn{1}{|c|}{46} & \multicolumn{1}{|c|}{0}\\ \cline{1-3}
+    \multicolumn{1}{|c|}{3} & \multicolumn{1}{|c|}{248} & \multicolumn{1}{|c|}{0}\\ \cline{1-3}
+    \multicolumn{1}{|c|}{4} & \multicolumn{1}{|c|}{956} & \multicolumn{1}{|c|}{875}\\ \cline{1-3}
+    \multicolumn{1}{|c|}{5} & \multicolumn{1}{|c|}{-} & \multicolumn{1}{|c|}{3843}\\ \cline{1-3}
+    \multicolumn{1}{l}{}   & \multicolumn{1}{l}{}
+    \end{tabular}
+    \caption{Performance evaluation}
+    \label{tbl:performance_evaluation}
+\end{table}
+
+As can be seen in column two in \ref{tbl:performance_evaluation}, the introduction of a transposition table and move ordering are able to reduce the overhead of iterative deepening and improve overall search depth over regular alpha-beta pruning.

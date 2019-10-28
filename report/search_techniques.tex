@@ -2,48 +2,28 @@
 
 \subsection{Alpha-Beta-Search}
 %  as introduced by \cite{knuth1975analysis}
-The game AI used for this game is implemented using an alpha-beta format, more ppecifically, the Negamax algorithm. Alpha-Beta pruning is used to reduce the number of nodes explored while maintaining the quality of the evaluation. The AI's move of choice is reset to the move in question, whenever there is an update of the evaluation at the very top of the search tree.
+The game AI used for this game is implemented using an alpha-beta format, more specifically, the Negamax algorithm. Alpha-Beta pruning is used to reduce the number of nodes explored while maintaining the quality of the evaluation. The AI's next move of choice is reset to the move in question, whenever there is an update of the evaluation at the very top of the search tree.
 
 \subsection{Debugging}
 To check the funcionality of the search techniques mentioned above, a debugging log as can be seen in \ref{fig:debugging} was used to keep track of the game tree. This proved to be a useful tool for ensuring correct evaluation values and prunings.
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.7]{log3.png}
-    \caption{Debugging log}
+    \includegraphics[scale=0.6]{log3.png}
+    \caption{Debugging log excerpt}
     \label{fig:debugging}
 \end{figure}  
 
 \subsection{Evaluation Function}
-The evaluation of a position relies on two separate ways of measuring the differences in continuous line lengths as heuristic for the quality of a position. The first component is only concerned with the longest continuous line owned by a player. It assumes increasing marginal utility of continuous lines:
-\begin{center}
-    \begin{math}
-        L_\mathrm{own}^2 - L_\mathrm{opponent}^2
-    \end{math}
-\end{center}
-where $L_\mathrm{self}$ denotes the player's longest continuous line and $L_\mathrm{opponent}$ denotes the opponents longest continuous line.
-
-For the second component, each cell is valued as the sum of the lenghts of all continuous lines it is a part of. The averages of these values are taken for either player and subracted to get a comparative evaluation:
+States with a definitive win are assigned a value greater than any other that can possibly be reached, plus their depth in their search tree to find the shortest win. Losing states are evaluated in the same way with an opposite sign. The evaluation of any other position relies on rewarding combinations of continuous lines. Each stone is assigned a value amounting to the sum of the lenghts of all continuous lines it is a part of in any of the three directions of the hexagonal board. In this method of evaluation, adding a stone to a continuous line of other connected stones will increase the evaluation not only by the value of the new stone, but also by the increase in value of the pre-existing ones. This results in an increasing marginal utility of continuous lines. The averages of these values per number of stones placed are taken for either player and subracted to get a comparative evaluation:
 \begin{center}
     \begin{math}
         \frac{\sum_{own\_tiles}\sum_{directions}c}{\sum{own\_tiles}} 
         - \frac{\sum_{opponent\_tiles}\sum_{directions}c}{\sum{opponent\_tiles}}
     \end{math}
 \end{center}
-Where $c$ denotes the lenth of the continuous line in a certain direction which the cell is a part of.
+Where $c$ denotes the lenth of the continuous line in a certain direction which the tile is a part of.
 
-
-The relevance of each evaluation component depends on their sign and is defined as follows:
-\begin{verbatim}
-    eval1 = my_connections/my_cells - enemy_connections/enemy_cells
-    eval2 = my_longest**2 - opponent_longest**2
-    if (eval1 > 0) and (eval2 > 0):  # cautious in winning position
-        return min(eval1, eval2)
-    if (eval1 < 0) and (eval2 < 0):  # optimistic in losing position
-        return max(eval1, eval2)
-    else: return eval1 + eval2
-\end{verbatim}
-
-For example, in \ref{fig:tree_in_row}, the black player will have a first evaluation component of $4^2 - 3^2 = 5$. His second evaluation component is $(3 + 3 + 3) / 3 - (2 + 2) / 2$. His total evaluation is therefore $5$.
+For example, in \ref{fig:tree_in_row}, the black player will evaluate the position as $\frac{3 + 3 + 3}{3} - \frac{2 + 2}{2} = 0$. Intuitively speaking, the black player does not consider this configuration advantageous since both players have been following the same strategy of laying straight lines.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.9]{three_in_row.png}
@@ -51,15 +31,14 @@ For example, in \ref{fig:tree_in_row}, the black player will have a first evalua
     \label{fig:tree_in_row}
 \end{figure}
 
-In \ref{fig:evaluation}, the white player has chosen to not go for continuous lines but rather cover more area and hope for future opportunities. Black, knowing it has the advantage, tries to achieve four in a row early on, to increase pressure and force white into a block. Black's first evaluation component of the position is still $4^2 - 3^2 = 5$, however the second component has become $\frac{(3 + 3 + 3 + 2 + 2)}{4} - \frac{2 + 2 + 2 + 2 + 2 + 2}{3} = -0.75$, resulting in an overall evaluation of $5 - 0.75 = 4.25$.
-\begin{figure}[H]
-    \centering
-    \includegraphics{evaluation.png}
-    \caption{Strategy divergence}
-    \label{fig:evaluation}
-\end{figure}
+% In \ref{fig:evaluation}, the white player has chosen to not go for continuous lines but rather cover more continuous area without giving black a chance to get to four in a row. The black player's setup however, does not maximize its continuous are. Its zero ply evaluation of the position is therefore $\frac{(3 + 3 + 3 + 2 + 2)}{4} - \frac{2 + 2 + 2 + 2 + 2 + 2}{3} = -0.75$.
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics{evaluation.png}
+%     \caption{Strategy divergence}
+%     \label{fig:evaluation}
+% \end{figure}
 
-Additionally, states with a definitive win are assigned a value greater than any other that can possibly be reached, while losing states are assigned anqually large negaive value.
 
 \subsection{Performance}
-The two evaluation components serve different purposes. The maximum line length component is only relevant in the very early stage of the game. It ensures that the player starting first will attempt to achieve the longest possible line as soon as he can get to it, while the player starting second will place a higher value on moves that ensure more options in the long term. This way, the initial player will try to make the most out of his first mover advantage, while the second player will try to not let the first player get close to a win too soon and avoids getting into positions with forced moves. As the game goes on, black will give up its greedy approach and adopt the same strategy as white. Once both players have achieved continuous lines of length four, the evaluation function will focus exclusively on the second component. This combination of evaluation functions was choosen after it proved able to beat a number of other hand-crafted evaluation functions.
+ The evaluation function described in this paragraph favours placing long continuous lines whenever possible, with a tendency to maximize connected area if there is no obvious way of achieving lines of greater length. Since a large continuous area will usually result in mutliple possibilities to achieve n-in-a-row, this approach seems to serve the game objective well. Whenever a player using this evaluation function has the initiative, it will often go for simple wins, forcing the opponent to block. This results in disconnected chains and isolated stones for the opponent which allow for pressure play by threatening a surround win. When the AI player does not have the initiative, it will often try to achieve a large connected area with a high number of chains that are hard to block simultaneously, until it can gain the initiative. This method of evaluation was choosen after it proved able to beat a number of other hand-crafted evaluation functions.

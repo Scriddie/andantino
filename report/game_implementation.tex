@@ -1,4 +1,6 @@
 % \let\clearpage\relax
+% \bigskip
+% \bigskip
 \section{Game Implementation}
 
 All components of the game were implemented in Python. While Python is not the fastest language due to its dynamically typed nature, it allows for rapid prototyping and short development cycles. Furthermore, compilation using e.g. \textit{Cython} can improve run-time to get results closer to those of statically typed languages.
@@ -24,7 +26,7 @@ The modules \textit{Game\_Logic} and \textit{View} are implemented in an object-
 
 
 \subsection{Data Structures}
-The game itself is represented as a Python dictionary containing the grid, turn and winner of a game. The grid in turn is represented as a nested list of Cells. Cells are again represented as dictionaries used to save the row, column and owner of each cell. In an earlier prototype, the game and cell were implemeted as classes, however this proved to be unnecessary overhead. The use of dictionaries allows for easy key-based access, iteration over elements and a simple way of manipulating the game state.
+The game itself is represented as a Python dictionary containing the grid, turn and winner of a game. The grid in turn is represented as a nested list of tiles. tiles are again represented as dictionaries used to save the row, column and owner of each tile. In an earlier prototype, the game and tile were implemeted as classes, however this proved to be unnecessary overhead. The use of dictionaries allows for easy key-based access, iteration over elements and a simple way of manipulating the game state.
 
 \subsection{Game Actions}
 
@@ -37,16 +39,16 @@ The game rules are implelemented as part of the Controller module. Implementatio
 %             return perform_action(game, action)
 %         else return None
 % \end{verbatim}
-Whether a move is legal or not is checked based on the turn and neighbours of the cell about to be placed. The neighbours are identified according to their index in the nested lists making up the game grid.
+Whether a move is legal or not is checked based on the turn and neighbours of the tile about to be placed. The neighbours are identified according to their index in the nested lists making up the game grid.
 
 
 \subsubsection{Win Conditions}
 
 \textbf{Five in a Row}\\
-The criterion for five in a row is implemented recursively. Each cell will recursively query neighbours in a straight line to count how many continuous cells of the same color there are.
+The criterion for five in a row is implemented recursively. Each tile will recursively query neighbours in a straight line to count how many continuous tiles of the same color there are.
 
 \textbf{Surround}\\
-The surround win criterion is implemented in a depth-first floodfill fashion. Each cell recursively queries its neighbours to check whether there is a way to get to the border of the game board. If there is no such path without encountering a cell of enemy color, a surround is detected.
+The surround win criterion is implemented in a depth-first floodfill fashion. Each tile recursively queries its neighbours to check whether there is a way to get to the border of the game board. If there is no such path without encountering a tile of enemy color, a surround is detected.
 
 
 \subsection{External Libraries}

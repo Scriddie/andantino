@@ -176,20 +176,19 @@ INPUT .\figures\log3.png
 INPUT .\figures\log3.png
 INPUT .\figures\log3.png
 INPUT .\figures\log3.png
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmtt10.tfm
 INPUT figures\three_in_row.png
 INPUT .\figures\three_in_row.png
 INPUT .\figures\three_in_row.png
 INPUT .\figures\three_in_row.png
 INPUT .\figures\three_in_row.png
-INPUT figures\evaluation.png
-INPUT .\figures\evaluation.png
-INPUT .\figures\evaluation.png
-INPUT .\figures\evaluation.png
-INPUT .\figures\evaluation.png
 OUTPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\enhancements.aux
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\enhancements.tex
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\enhancements.tex
+INPUT figures\no_tt_vs_tt_opening_position0.png
+INPUT .\figures\no_tt_vs_tt_opening_position0.png
+INPUT .\figures\no_tt_vs_tt_opening_position0.png
+INPUT .\figures\no_tt_vs_tt_opening_position0.png
+INPUT .\figures\no_tt_vs_tt_opening_position0.png
 OUTPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\ideas_for_improvement.aux
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\ideas_for_improvement.tex
 INPUT c:\Users\alexa\OneDrive\Documents\Studies\AI\ISG\andantino\report\ideas_for_improvement.tex
@@ -245,5 +244,3 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmti10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmti10.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmtt10.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmtt10.pfb
