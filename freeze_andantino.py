@@ -3,7 +3,7 @@
 
 import cx_Freeze
 
-executables = [cx_Freeze.Executable("controller.py")]
+executables = [cx_Freeze.Executable("controller.py", base = "Win32GUI")]
 
 # maybe include other packages as well just to be sure?
 cx_Freeze.setup(

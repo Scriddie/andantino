@@ -1,10 +1,12 @@
+"""
+This file includes the complete game-playing agent class.
+"""
+
 from copy import deepcopy
 from numpy import inf
 import hashlib
 import time
 
-# TODO: trivial speed up for white: place random
-# TODO: incentivise AI to fight on for as long as possible!
 # POSSIBLE TODO: build transposition table while opponent is thinking?
 class AI:
     """
@@ -12,14 +14,17 @@ class AI:
     Calculate moves for a given game
     """
     # TODO: make all the various improvements optional to be able to test them easily
-    def __init__(self, game_logic, iterations, player_number, logger, initial_time):
+    def __init__(self, game_logic, iterations, player_number, logger, initial_time, use_tt=True):
         self.game_logic = game_logic
         self.game_plan = []  # best sequence, updated as a side effect of evaluation
         self.logger = logger
         self.player_number = player_number
         self.iterations = iterations
+        self.iterations_performed = []  # store values for analysis
+        self.nodes_visited = []  # store values for analysis
         self.next_move = None
         self.evaluation = None
+        self.use_tt = use_tt
         self.t_table = {}
         self.best_move = (9, 9)
         self.initial_time = initial_time  # total time for game
@@ -30,10 +35,14 @@ class AI:
         Find best next move and update transposition table in the process.
         Adhere to time constraints by clipping search depths accordingly.
         """
+        self.iterations_performed = []
+        self.nodes_visited = []
         turn = game["turn"]
         self.logger.info(f"\n\nTURN {turn} \n")
         self.move_start_time = time.time()
         for i in range(1, self.iterations+1):
+            self.iterations_performed.append(i)
+            self.nodes_visited.append(0)
             self.logger.info(f"Iteration: {i}")
             self.max_depth = i
             self.evaluation = self.negamax(game, self.max_depth, alpha=-inf, beta=inf, player_sign=1)
@@ -64,7 +73,7 @@ class AI:
 
     def evaluate(self, game, depth):
         """evaluation of a game, always from the root player's perspective"""
-        # TODO: maybe reward play in the center of the board?
+        self.nodes_visited[-1] += 1
         winner = game["winner"]
         if winner != None:
             if winner == self.player_number:
@@ -113,7 +122,6 @@ class AI:
                 ideal_order.append(self.t_table[hash_value]["evaluation"])
             except KeyError:
                 ideal_order.append(-inf)  # put the ones we have pruned to the very end
-            # TODO: come up with some sensible logging
             if (len(set(ideal_order)) > 1):  # order it by the first of the tupel pair
                 ordered = [x for _, x in sorted(zip(ideal_order, successors), key=lambda pair: pair[0])]
         return ordered
@@ -130,22 +138,23 @@ class AI:
 
         self.logger.info(f"{indent}Depth: {self.max_depth - depth} -> Hash: {position_hash}")
         # Try retrieving values from transposition table
-        try:
-            tt_entry = self.t_table[position_hash]
-        except KeyError:
-            tt_entry = None
-        if (tt_entry != None) and (tt_entry["depth"] >= depth):
-            if tt_entry["flag"] == "exact":
-                if self.max_depth == depth:
-                    self.best_move = (tt_entry["row"], tt_entry["col"])
-                return tt_entry["value"]
-            elif tt_entry["flag"] == "b_cutoff":
-                alpha = max(alpha, tt_entry["value"])
-            elif tt_entry["flag"] == "a_cuttoff":
-                beta = min(beta, tt_entry["value"])
-            
-            if alpha >= beta:
-                return tt_entry["value"]
+        if self.use_tt:
+            try:
+                tt_entry = self.t_table[position_hash]
+            except KeyError:
+                tt_entry = None
+            if (tt_entry != None) and (tt_entry["depth"] >= depth):
+                if tt_entry["flag"] == "exact":
+                    if self.max_depth == depth:
+                        self.best_move = (tt_entry["row"], tt_entry["col"])
+                    return tt_entry["value"]
+                elif tt_entry["flag"] == "b_cutoff":
+                    alpha = max(alpha, tt_entry["value"])
+                elif tt_entry["flag"] == "a_cuttoff":
+                    beta = min(beta, tt_entry["value"])
+                
+                if alpha >= beta:
+                    return tt_entry["value"]
 
         # Check for win condition or leaf node
         if (self.game_logic.is_win_condition(game) or (depth == 0)):
@@ -175,17 +184,18 @@ class AI:
                 break
 
         # Save newly found value in transposition table
-        new_tt_entry = {"value": value}
-        if value <= alphaOrig:
-            new_tt_entry["flag"] = "a_cuttoff"
-        elif value >= beta:
-            new_tt_entry["flag"] = "b_cutoff"
-        else:
-            new_tt_entry["flag"] = "exact"
-        new_tt_entry["depth"] = depth
-        new_tt_entry["row"] = i
-        new_tt_entry["col"] = j
-        self.t_table[position_hash] = new_tt_entry
+        if self.use_tt:
+            new_tt_entry = {"value": value}
+            if value <= alphaOrig:
+                new_tt_entry["flag"] = "a_cuttoff"
+            elif value >= beta:
+                new_tt_entry["flag"] = "b_cutoff"
+            else:
+                new_tt_entry["flag"] = "exact"
+            new_tt_entry["depth"] = depth
+            new_tt_entry["row"] = i
+            new_tt_entry["col"] = j
+            self.t_table[position_hash] = new_tt_entry
 
         return value
 

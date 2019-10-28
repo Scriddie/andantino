@@ -1,3 +1,7 @@
+"""
+This class contains the game logic including rules, win conditions and manipulations of the game state.
+"""
+
 from operator import add
 from copy import deepcopy
 import hashlib
@@ -10,7 +14,6 @@ class GameLogic:
         self.NUMBER_COORDINATES = list(range(1, 20))
         self.LETTER_COORDINATES = ["A", "B", "C", "D", "E", "F", "G", "H",
          "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"]
-        # TODO: transfer time keeping to controller
         self.initial_time = time_limit
         self.player_0_time = time_limit
         self.player_1_time = time_limit
@@ -65,16 +68,6 @@ class GameLogic:
             number_coord = self.NUMBER_COORDINATES[col + (row - 9)]
             return(letter_coord, number_coord)
 
-    def coordinates_to_indexes(self, letter_coord, number_coord):
-        # TODO: doesnt seem to work (try ('M' 11))
-        row = letter_coord.index(letter_coord)
-        if row <= 9:
-            col = number_coord - 1
-            return(row, col)
-        else:
-            col = number_coord - 1 - (row - 9)
-            return(row, col)
-
     def update_owner(self, game, row, col):
         player = self.get_player(game)
         if self.is_legal(game, row, col):
@@ -85,10 +78,6 @@ class GameLogic:
             return True
         else:
             return False
-
-    def update_owner_coordinates(self, game, letter, number):
-        row, col = self.coordinates_to_indexes(letter, number)
-        self.update_owner(game, row, col)
 
     def get_neighbours(self, game, row, col):
         neighbour_indexes = [(-1, -1), (0, -1), (1, 0), (1, 1), (0, 1), (-1, 0)]
@@ -122,38 +111,6 @@ class GameLogic:
         else:
             return False
 
-    # def set_neighbours(self, game):
-    #     grid = game["grid"]
-    #     neigbour_indexes = [(-1, -1), (0, -1), (1, 0), (1, 1), (0, 1), (-1, 0)]
-    #     for row_index, row in enumerate(grid):
-    #         for col_index, cell in enumerate(row):
-    #             # add cell neighbours here
-    #             neighbours = []
-    #             for x, y in neigbour_indexes:
-    #                 neighbour_x = row_index + x
-    #                 neighbour_y = col_index + y
-    #                 if (row_index >= 9) and (neighbour_x > row_index):
-    #                     neighbour_y -= 1
-    #                 if (row_index >= 10) and (neighbour_x < row_index):
-    #                     neighbour_y += 1
-    #                 if neighbour_x >= 0 and neighbour_y >= 0:
-    #                     try:
-    #                         new_neighbour = grid[neighbour_x][neighbour_y]
-    #                     except IndexError:
-    #                         new_neighbour = None
-    #                 else:
-    #                     new_neighbour = None
-    #                 neighbours.append(new_neighbour)
-    #             cell.set_neighbours(neighbours)
-
-    # def del_neighbours(self, game):
-    #     """delete all neighbour information for a game
-    #        needed for serialization in copy / save"""
-    #     grid = game["grid"]
-    #     for row in grid:
-    #         for cell in row:
-    #             cell.set_neighbours([None, None, None, None, None, None])
-
     def find_successors(self, game):
         """find all legal successor games"""
         grid = game["grid"]
@@ -180,7 +137,6 @@ class GameLogic:
             raise IndexError("case in 'continue_row' not anticipated")
 
     def count_cont_rows(self, game, row, col):
-        # TODO: this counts way too much
         """count win directions for a given cell"""
         cell = self.get(game, row, col)
         neighbours = self.get_neighbours(game, row, col)
@@ -209,7 +165,6 @@ class GameLogic:
 
     
     def is_enclosed(self, game, row, col, owner):
-        # TODO: not sure if this works
         cell = self.get(game, row, col)
         cell["checked"] = True
         neighbours = self.get_neighbours(game, row, col)
@@ -292,5 +247,3 @@ class GameLogic:
             return self.player_1_time
         else:
             raise IndexError
-
-    # TODO: save and reload functionality
