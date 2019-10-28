@@ -7,4 +7,5 @@ report/figures/
 submission_versions/
 build/
 pyxes/
+stats/
 *.log
