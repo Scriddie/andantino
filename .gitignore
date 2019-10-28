@@ -5,4 +5,6 @@ versions/
 tests/
 report/figures/
 submission_versions/
+build/
+pyxes/
 *.log
